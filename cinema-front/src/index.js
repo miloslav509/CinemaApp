@@ -4,6 +4,8 @@ import { Route, Link, HashRouter as Router, Switch, Redirect } from "react-route
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
+import Login from "./components/authorization/Login";
+import { logout } from "./services/Auth";
 
 class App extends React.Component {
     
