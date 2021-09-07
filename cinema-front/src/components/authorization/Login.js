@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, Button, Row, Col} from "react-bootstrap"
+import { Button, Col, Form, Row } from 'react-bootstrap';
 import { login } from '../../services/Auth';
 
 class Login extends React.Component {
@@ -33,7 +33,7 @@ class Login extends React.Component {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" name="password" onChange = {(e)=> this.onInputChange(e)} ></Form.Control>
                         </Form.Group>
-                        <Button variant="success" onClick = {()=> {login(this.state.username, this.state.password)}}/> 
+                        <Button variant="success" onClick = {()=> {login(this.state.username, this.state.password)}}>Login</Button> 
                     </Form>
                 </Col>
             </Row>

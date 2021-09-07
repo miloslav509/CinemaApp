@@ -1,24 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Route, Link, HashRouter as Router, Switch, Redirect } from "react-router-dom";
-import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import Home from "./components/Home";
 import NotFound from "./components/NotFound";
 import Login from "./components/authorization/Login";
 import { logout } from "./services/Auth";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
 
 class App extends React.Component {
     
     render() {
 
         const jwt = window.localStorage['jwt'];
-        
+        console.log(jwt);
         if(jwt){
             return (
                 <div>
                     <Router>
                         <Navbar expand bg="dark" variant="dark">
-                            <Navbar.Brand as={Link} onTouchCancel="/">
+                            <Navbar.Brand as={Link} to="/">
                                 JWD
                             </Navbar.Brand>
                             <Nav>
@@ -47,7 +47,7 @@ class App extends React.Component {
                     <Router>
                         <Switch>
                             <Route exact path="/login" component={Login}/>
-                            <Route rende={()=> <Redirect to="/login"/>}/>
+                            <Route render={()=> <Redirect to="/login"/>}/>
                         </Switch>
                     </Router>
                 </Container>

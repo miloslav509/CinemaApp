@@ -13,6 +13,7 @@ export const login = async function(username, password) {
         console.log(decode.role.authority)
         window.localStorage.setItem('role', decode.role.authority);
         window.localStorage.setItem('jwt', ret.data);
+        console.log(window.localStorage.username);
     }catch(error) {
         console.log(error);
     }
