@@ -2,6 +2,7 @@ package com.ftninformatika.jwd.modul3.cinema.support;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,11 @@ public class FilmToFilmDto implements Converter<Film, FilmDTO> {
 		dto.setTrajanje(s.getTrajanje());
 		dto.setGodinaProizvodnje(s.getGodinaProizvodnje());
 		dto.setZemljaPorekla(s.getZemljaPorekla());
-		List<Zanr> zanrovi = new ArrayList<>(s.getZanrovi());
-        dto.setZanrovi(new HashSet<>(zanrToZanrDto.convert(zanrovi)));
+		LinkedHashMap<Long, String> zanroviMap = new LinkedHashMap<>();
+        for (Zanr zanr: s.getZanrovi()) {
+            zanroviMap.put(zanr.getId(), zanr.getNaziv());
+        }
+        dto.setZanrovi(zanroviMap);
         dto.setOpis(s.getOpis());
         return dto;
 	}

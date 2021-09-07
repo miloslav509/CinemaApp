@@ -1,5 +1,6 @@
-package com.ftninformatika.jwd.modul3.cinema.service.impl;
+package com.ftninformatika.jwd.modul3.cinema.support;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,8 +43,7 @@ public class FilmDtoToFilm implements Converter<FilmDTO, Film> {
             film.setZemljaPorekla(dto.getZemljaPorekla());
             
             if(dto.getZanrovi() != null) {
-            	List<Long> idZanrova = dto.getZanrovi().stream().map(ZanrDTO::getId).collect(Collectors.toList());
-                List<Zanr> zanrovi = zanrService.find(idZanrova);
+            	List<Zanr> zanrovi = zanrService.find(new ArrayList<>(dto.getZanrovi().keySet()));
                 film.setZanrovi(new HashSet<>(zanrovi));
             }    
 		}

@@ -26,7 +26,7 @@ import com.ftninformatika.jwd.modul3.cinema.model.Zanr;
 import com.ftninformatika.jwd.modul3.cinema.service.FilmService;
 import com.ftninformatika.jwd.modul3.cinema.service.ProjekcijaService;
 import com.ftninformatika.jwd.modul3.cinema.service.ZanrService;
-import com.ftninformatika.jwd.modul3.cinema.service.impl.FilmDtoToFilm;
+import com.ftninformatika.jwd.modul3.cinema.support.FilmDtoToFilm;
 import com.ftninformatika.jwd.modul3.cinema.support.FilmToFilmDto;
 import com.ftninformatika.jwd.modul3.cinema.support.ProjekcijaToProjekcijaDto;
 import com.ftninformatika.jwd.modul3.cinema.support.ZanrToZanrDto;

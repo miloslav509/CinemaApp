@@ -6,8 +6,22 @@ import NotFound from "./components/NotFound";
 import Login from "./components/authorization/Login";
 import { logout } from "./services/Auth";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import Movies from "./components/movies/Movies";
+import AddMovie from "./components/movies/AddMovie";
+
 
 class App extends React.Component {
+
+    constructor() {
+        super();
+        this.state = {
+            selectedMovie: ""
+        }
+    }
+
+    changeSelectedMovie(movie) {
+        this.setState({selectedMovie: movie});
+    }
     
     render() {
 
@@ -35,6 +49,9 @@ class App extends React.Component {
                             <Switch>
                                 <Route exact path="/" component={Home}/>
                                 <Route exact path="/login" render={()=> <Redirect to="/movies"/>}/>
+                                <Route exact path="/movies" render={(props) => <Movies {...props} selectMovie = {(movie) => {this.changeSelectedMovie(movie)}}/>}/>
+                                <Route exact path="/movies/add" render={(props) => <AddMovie {...props} deleteMovie = {(movie) => {this.changeSelectedMovie(movie)}}
+                                selectedMovie = {this.state.selectedMovie} />}/>
                                 <Route component={NotFound}/>
                             </Switch>
                         </Container>

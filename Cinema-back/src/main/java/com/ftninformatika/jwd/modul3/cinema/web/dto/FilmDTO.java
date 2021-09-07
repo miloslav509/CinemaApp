@@ -1,6 +1,8 @@
 package com.ftninformatika.jwd.modul3.cinema.web.dto;
 
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 
 import javax.validation.constraints.NotBlank;
@@ -24,7 +26,7 @@ public class FilmDTO {
     
     private String opis;
     
-    private Set<ZanrDTO> zanrovi = new HashSet<>();
+    private Map<Long, String> zanrovi = new LinkedHashMap<>();
 
 	public Long getId() {
 		return id;
@@ -74,11 +76,12 @@ public class FilmDTO {
 		this.godinaProizvodnje = godinaProizvodnje;
 	}
 
-	public Set<ZanrDTO> getZanrovi() {
+
+	public Map<Long, String> getZanrovi() {
 		return zanrovi;
 	}
 
-	public void setZanrovi(Set<ZanrDTO> zanrovi) {
+	public void setZanrovi(Map<Long, String> zanrovi) {
 		this.zanrovi = zanrovi;
 	}
 
