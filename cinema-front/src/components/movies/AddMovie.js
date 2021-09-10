@@ -101,7 +101,7 @@ class AddMovie extends React.Component {
                                         variant="info"
                                         onClick={() => this.setState({showSelectedGenres: true})}
                                     >
-
+                                    &gt;
                                     </Button>
                                 </InputGroup.Append>
                             </InputGroup>
@@ -115,8 +115,8 @@ class AddMovie extends React.Component {
                 </Row>
 
                 <SelectGenres
-                    show={this.state.showSelectGenres}
-                    handleClose={() => this.setState({ showSelectGenres: false })}
+                    show={this.state.showSelectedGenres}
+                    handleClose={() => this.setState({ showSelectedGenres: false })}
                     selectedGenres={this.state.movie.zanrovi}
                     finishSelection={(newlySelectedGenres) =>
                     {
