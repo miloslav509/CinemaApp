@@ -8,6 +8,7 @@ import { logout } from "./services/Auth";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import Movies from "./components/movies/Movies";
 import AddMovie from "./components/movies/AddMovie";
+import Projections from "./components/projections/Projections";
 
 
 class App extends React.Component {
@@ -52,6 +53,7 @@ class App extends React.Component {
                                 <Route exact path="/movies" render={(props) => <Movies {...props} selectMovie = {(movie) => {this.changeSelectedMovie(movie)}}/>}/>
                                 <Route exact path="/movies/add" render={(props) => <AddMovie {...props} deleteMovie = {(movie) => {this.changeSelectedMovie(movie)}}
                                 selectedMovie = {this.state.selectedMovie} />}/>
+                                <Route exact path="/projections" component={Projections}/>
                                 <Route component={NotFound}/>
                             </Switch>
                         </Container>
