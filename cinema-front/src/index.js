@@ -9,6 +9,7 @@ import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import Movies from "./components/movies/Movies";
 import AddMovie from "./components/movies/AddMovie";
 import Projections from "./components/projections/Projections";
+import AddProjection from "./components/projections/AddProjection";
 
 
 class App extends React.Component {
@@ -16,12 +17,17 @@ class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            selectedMovie: ""
+            selectedMovie: "",
+            selectedProjection: ""
         }
     }
 
     changeSelectedMovie(movie) {
         this.setState({selectedMovie: movie});
+    }
+
+    changeSelectedProjection(projection) {
+        this.setState({selectedProjection: projection});
     }
     
     render() {
@@ -53,7 +59,9 @@ class App extends React.Component {
                                 <Route exact path="/movies" render={(props) => <Movies {...props} selectMovie = {(movie) => {this.changeSelectedMovie(movie)}}/>}/>
                                 <Route exact path="/movies/add" render={(props) => <AddMovie {...props} deleteMovie = {(movie) => {this.changeSelectedMovie(movie)}}
                                 selectedMovie = {this.state.selectedMovie} />}/>
-                                <Route exact path="/projections" component={Projections}/>
+                                <Route exact path="/projections" render={(props) => <Projections {...props} selectProjection = {(projection) => {this.changeSelectedProjection(projection)}}/>}/>
+                                <Route exact path="/projections/add" render={(props) => <AddProjection {...props} deleteProjection = {(projection) => {this.changeSelectedProjection(projection)}}
+                                selectedProjection = {this.state.selectedProjection} />}/>
                                 <Route component={NotFound}/>
                             </Switch>
                         </Container>

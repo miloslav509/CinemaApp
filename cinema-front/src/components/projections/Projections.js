@@ -6,7 +6,7 @@ class Projections extends React.Component {
 
     constructor(props) {
         super(props);
-
+        this.functionForProjectionEdit = props.selectProjection;
         const search = {
             minPrice: "",
             maxPrice: "",
@@ -52,7 +52,7 @@ class Projections extends React.Component {
         if (this.state.search.movieId != "") {
             config.params["filmId"] = this.state.search.movieId;
         }
-
+        console.log(config)
         try{
             let result = await CinemaAxios.get("/projekcije", config);
             this.setState({
@@ -83,6 +83,25 @@ class Projections extends React.Component {
         this.props.history.push("/projections/add");
     }
 
+    goToEdit(projectionId) {
+        this.functionForProjectionEdit(this.state.projections.find(projection => projection.id == projectionId));
+        this.props.history.push('/projections/add');
+    }
+
+    delete(id) {
+        CinemaAxios.delete('/projekcije/' + id)
+        .then(res => {
+            
+            console.log(res);
+            alert('Projection was deleted successfully!');
+            window.location.reload();
+        })
+        .catch(error => {
+            console.log(error);
+            alert('Error occured please try again!');
+         });
+    }
+
     inputChange(event) {
         const name = event.target.name;
         const value = event.target.value;
@@ -90,6 +109,8 @@ class Projections extends React.Component {
         let search = {...this.state.search};
         search[name] = value;
         this.setState({search});
+        console.log(this.state)
+        this.getProjections(0);
     }
 
     renderProjections() {
@@ -102,8 +123,8 @@ class Projections extends React.Component {
                     <td>{projection.salaNaziv}</td>
                     <td>{projection.cenaKarte}</td>
                     {window.localStorage["role"] == "ROLE_ADMIN" ?
-                    [<td><Button variant="warning" >Edit</Button></td>,
-                    <td><Button variant="danger" >Delete</Button></td>]
+                    [<td><Button variant="warning" onClick={() => this.goToEdit(projection.id)}>Edit</Button></td>,
+                    <td><Button variant="danger" onClick={() => this.delete(projection.id)} >Delete</Button></td>]
                     :<td><Button variant="info" >Buy ticket</Button></td>}
                 </tr>
             )
@@ -185,7 +206,7 @@ class Projections extends React.Component {
                             })}
                         </Form.Control>    
                     </Form.Group>
-                    <Button variant="info" onClick={() => this.getProjecitons(0)}>Search</Button>
+                    <Button variant="info" onClick={() => this.getProjections(0)}>Search</Button>
                 </Form>
                 <br/><br/>
                 
