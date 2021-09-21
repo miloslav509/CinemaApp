@@ -88,6 +88,11 @@ class Projections extends React.Component {
         this.props.history.push('/projections/add');
     }
 
+    goToBuyTicket(projectionId) {
+        this.functionForProjectionEdit(this.state.projections.find(projection => projection.id == projectionId));
+        this.props.history.push('/projections/ticket');
+    }
+
     delete(id) {
         CinemaAxios.delete('/projekcije/' + id)
         .then(res => {
@@ -125,7 +130,7 @@ class Projections extends React.Component {
                     {window.localStorage["role"] == "ROLE_ADMIN" ?
                     [<td><Button variant="warning" onClick={() => this.goToEdit(projection.id)}>Edit</Button></td>,
                     <td><Button variant="danger" onClick={() => this.delete(projection.id)} >Delete</Button></td>]
-                    :<td><Button variant="info" >Buy ticket</Button></td>}
+                    :<td><Button variant="info" onClick={() => this.goToBuyTicket(projection.id)} >Buy ticket</Button></td>}
                 </tr>
             )
         })
@@ -211,9 +216,8 @@ class Projections extends React.Component {
                 <br/><br/>
                 
                 <div>
-                    <Button onClick={() => this.gotoAdd()}>
-                        Add
-                    </Button>
+                    {window.localStorage['role'] == 'ROLE_ADMIN'?
+                    <Button onClick={() => this.goToAdd() }>Add</Button>: null}
                     <br/>
                     <Table id="movies-table" style={{marginTop: 5}}>
                         <thead>

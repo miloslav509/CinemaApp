@@ -25,7 +25,9 @@ class AddProjection extends React.Component {
     }
 
     componentDidMount() {
-        this.getHalls();
+        if (this.state.projection.id !== -1) {
+            this.getHalls(this.state.projection.tipId);
+        }
         this.getMovies();
         this.getTypes();
     }
@@ -52,10 +54,10 @@ class AddProjection extends React.Component {
         }
     }
 
-    async getHalls() {
+    async getHalls(typeId) {
 
         try {
-            let result = await CinemaAxios.get("/sale");
+            let result = await CinemaAxios.get("/tipovi/" + typeId + "/sale");
             this.setState({halls: result.data});
         }catch(error) {
             console.log(error);
@@ -110,7 +112,9 @@ class AddProjection extends React.Component {
 
         let projection = this.state.projection;
         projection[name] = value;
-
+        if (name === "tipId") {
+            this.getHalls(value);
+        }
         this.setState({projection: projection});
         console.log(this.state)
     }

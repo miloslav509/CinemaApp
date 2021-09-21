@@ -53,7 +53,6 @@ public class JpaSedisteService implements SedisteService {
 		Projekcija projekcija = projekcijaService.findOne(id);
 		List<Sediste> sedista = projekcija.getSala().getSedista();
 		List<Karta> karte = projekcija.getKarte();
-		List<Sediste> slobodnaSedista = new ArrayList<>();
 		if (karte.size() > 0) {
 			for (Karta karta : karte) {
 				for (int i = 0; i < sedista.size(); i++) {

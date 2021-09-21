@@ -10,6 +10,7 @@ import Movies from "./components/movies/Movies";
 import AddMovie from "./components/movies/AddMovie";
 import Projections from "./components/projections/Projections";
 import AddProjection from "./components/projections/AddProjection";
+import BuyTicket from "./components/tickets/BuyTicket";
 
 
 class App extends React.Component {
@@ -61,6 +62,8 @@ class App extends React.Component {
                                 selectedMovie = {this.state.selectedMovie} />}/>
                                 <Route exact path="/projections" render={(props) => <Projections {...props} selectProjection = {(projection) => {this.changeSelectedProjection(projection)}}/>}/>
                                 <Route exact path="/projections/add" render={(props) => <AddProjection {...props} deleteProjection = {(projection) => {this.changeSelectedProjection(projection)}}
+                                selectedProjection = {this.state.selectedProjection} />}/>
+                                <Route exact path="/projections/ticket" render={(props) => <BuyTicket {...props} deleteProjection = {(projection) => {this.changeSelectedProjection(projection)}}
                                 selectedProjection = {this.state.selectedProjection} />}/>
                                 <Route component={NotFound}/>
                             </Switch>
