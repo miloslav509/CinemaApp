@@ -1,6 +1,7 @@
 package com.ftninformatika.jwd.modul3.cinema.web.controller;
 
 import com.ftninformatika.jwd.modul3.cinema.model.Adresa;
+import com.ftninformatika.jwd.modul3.cinema.model.Film;
 import com.ftninformatika.jwd.modul3.cinema.model.Karta;
 import com.ftninformatika.jwd.modul3.cinema.model.Korisnik;
 import com.ftninformatika.jwd.modul3.cinema.security.TokenUtils;
@@ -32,6 +33,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -196,5 +198,17 @@ public class KorisnikController {
     	List<Karta> karte = kartaService.findByKorisnik(korisnik.getId());
     	
     	return new ResponseEntity<>(toKartaDto.convert(karte), HttpStatus.OK);
+    }
+    
+  //@PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        Korisnik obrisanKorisnik = korisnikService.delete(id);
+        
+        if(obrisanKorisnik != null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

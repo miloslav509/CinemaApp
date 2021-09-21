@@ -17,7 +17,7 @@ public interface KorisnikService {
 
     Korisnik save(Korisnik korisnik);
 
-    void delete(Long id);
+    Korisnik delete(Long id);
 
     Optional<Korisnik> findbyKorisnickoIme(String korisnickoIme);
 

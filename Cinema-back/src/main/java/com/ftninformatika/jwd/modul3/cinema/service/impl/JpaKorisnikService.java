@@ -46,8 +46,14 @@ public class JpaKorisnikService implements KorisnikService {
     }
 
     @Override
-    public void delete(Long id) {
-        korisnikRepository.deleteById(id);
+    public Korisnik delete(Long id) {
+        Korisnik korisnik = findOne(id).get();
+        if (korisnik != null) {
+			korisnikRepository.delete(korisnik);
+			return korisnik;
+		}else {
+			return null;
+		}
     }
 
     @Override

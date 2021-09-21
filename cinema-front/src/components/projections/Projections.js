@@ -114,7 +114,6 @@ class Projections extends React.Component {
         let search = {...this.state.search};
         search[name] = value;
         this.setState({search});
-        console.log(this.state)
         this.getProjections(0);
     }
 
