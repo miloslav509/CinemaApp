@@ -34,11 +34,46 @@ class AddMovie extends React.Component {
     }
 
     create() {
-
+        var params = {
+            naziv: this.state.movie.naziv,
+            trajanje: this.state.movie.trajanje,
+            zanrovi: this.state.movie.zanrovi
+          };
+      
+          if(this.state.movie.id==-1){
+            CinemaAxios.post("/filmovi", params)
+            .then((res) => {
+             
+              console.log(res);
+      
+              alert("Movie was added successfully!");
+              this.props.history.push("/movies");
+            })
+            .catch((error) => {
+              
+              console.log(error);
+              alert("Error occured please try again!");
+            });
+          }else{
+            params['id'] = this.state.movie.id
+            CinemaAxios.put("/filmovi/"+this.state.movie.id, params)
+            .then((res) => {
+              
+              console.log(res);
+      
+              alert("Movie was added successfully!");
+              this.props.history.push("/movies");
+            })
+            .catch((error) => {
+              
+              console.log(error);
+              alert("Error occured please try again!");
+            });
+          }
     }
 
     sumarizedGenres() {
-
+        return Object.values(this.state.movie.zanrovi).join(', ')
     }
 
     onChangeHandler(event) {
