@@ -89,7 +89,7 @@ class App extends React.Component {
                         <Router>
                             <Navbar expand bg="dark" variant="dark">
                                 <Navbar.Brand as={Link} to="/">
-                                    JWD
+                                    JWDa
                                 </Navbar.Brand>
                                 <Nav>
                                     <Nav.Link as={Link} to="/movies">
